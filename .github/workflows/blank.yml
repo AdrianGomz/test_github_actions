@@ -19,8 +19,8 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.pRIVATEKEY }}
-#         port: ${{ secrets.port }}
+        key: ${{ secrets.PRIVATEKEY }}
+#         port: 22
         script: sh test_actions.sh
 
   # Allows you to run this workflow manually from the Actions tab
