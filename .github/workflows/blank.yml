@@ -16,9 +16,9 @@ jobs:
     - name: Install SSH Key
       uses: appleboy/ssh-action@master
       with:
-        host: 20.225.138.176
-        username: isaac
-        password: 1234qwerQWER
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
         port: 22
         script:
           sh test_actions.sh
