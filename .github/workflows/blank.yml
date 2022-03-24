@@ -18,7 +18,7 @@ jobs:
       with:
         host: 20.225.138.176
         username: isaac
-        key: ${{ secrets.PRIVATEKEY }}
+        password: 1234qwerQWER
         port: 22
         script:
           sh test_actions.sh
