@@ -8,21 +8,38 @@ on:
   push:
     branches:
     - main
+    
+    
 jobs:
-
-  build:
-    name: Build
-    runs-on: ubuntu-latest
+  # Deploy Process
+  deploy:
+    runs-on: ubuntu-18.04 
     steps:
-    - name: executing remote ssh commands using ssh key
-      uses: appleboy/ssh-action@master
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2.1.0
       with:
-        host: ${{ secrets.HOST }}
-        password: ${{ secrets.PASSWORD }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.PRIVATEKEY }}
-#         port: 22
-        script: sh test_actions.sh
+        key: ${ { secrets.PRIVATEKEY } }
+        known_hosts: ${ { secrets.HOST } }        
+    - name: Execute test Script
+      run: ssh ${ { secrets.USERNAME } }@${ { secrets.HOST } } bash test_actions.sh
+    
+    
+    
+# jobs:
+
+#   build:
+#     name: Build
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: executing remote ssh commands using ssh key
+#       uses: appleboy/ssh-action@master
+#       with:
+#         host: ${{ secrets.HOST }}
+#         password: ${{ secrets.PASSWORD }}
+#         username: ${{ secrets.USERNAME }}
+#         key: ${{ secrets.PRIVATEKEY }}
+# #         port: 22
+#         script: sh test_actions.sh
 
   # Allows you to run this workflow manually from the Actions tab
 #   workflow_dispatch:
